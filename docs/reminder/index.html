@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Happycloud Reminder</title>
+    <style type="text/css">
+        html {
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        iframe {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            border: 0;
+        }
+    </style>
+    <script type="text/javascript">
+
+        typeformUrl="https://randomburstsofhappiness.typeform.com/to/AcaOyA";
+
+        function ht_get_parameters() {
+            var regex = /[?&]([^=#]+)=([^&#]*)/g,
+                url = window.location.href,
+                params = {email:'',phone:'', status:'',burst:'',timestamp:''},
+                match;
+            while (match = regex.exec(url)) {
+                params[match[1]] = match[2];
+            }
+            return params;
+        }
+        ht_serialize = function(obj) {
+            var str = [];
+            for (var p in obj)
+                if (obj.hasOwnProperty(p)) {
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                }
+            return str.join("&");
+        };
+
+        pars=ht_get_parameters();
+        pars.timestamp=new Date().toString();
+
+        //console.log(pars);
+
+        window.onload=function(){
+            var url=typeformUrl+"?"+ht_serialize(pars);
+            var iframe = document.createElement('iframe');
+            //iframe.style.display = "none";
+            iframe.src =url;
+            iframe.id="typeform-full";
+            iframe.width="100%";
+            iframe.height="100%";
+            iframe.frameborder="0";
+            document.body.appendChild(iframe);
+            var script = document.createElement("script");
+            script.setAttribute("type", "text/javascript");
+            script.src ="https://embed.typeform.com/embed.js";
+            document.body.appendChild(script);
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
